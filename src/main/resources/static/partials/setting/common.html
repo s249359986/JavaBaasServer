@@ -1,0 +1,19 @@
+<div ng-controller="appCtrl">
+    <h4>基本信息</h4>
+    <label>应用名称</label>
+
+    <div class="form-group">
+        <input class="form-control" ng-model="app.name"/>
+    </div>
+    <h4>删除应用</h4>
+    <label>输入登录密码后方可删除应用，应用删除后不可恢复</label>
+
+    <div class="form-group">
+        <div class="input-group  col-md-5">
+            <input class="form-control"/>
+            <span class="input-group-btn">
+                <button class="btn btn-danger" ng-click="deleteApp(app.id)">删除</button>
+            </span>
+        </div>
+    </div>
+</div>

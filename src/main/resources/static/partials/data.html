@@ -1,0 +1,147 @@
+
+<style>
+    ul{
+        padding: 0px;
+    }
+    ul li{
+        list-style-type:none;
+
+    }
+    .cla-item .cla-name {
+        display: block;
+        width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .cla-item .cla-count {
+        position: absolute;
+        display: block;
+        top: 5px;
+        right: 10px;
+        max-width: 56px;
+        font-weight: 400;
+        opacity: .6;
+        text-align: right;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="row" ng-controller="dataCtrl">
+
+
+    <div class="col-md-2">
+        <div class="sidebar hidden-print affix-top ng-scope">
+
+
+            <div class="row">
+                <div class="col-md-8">
+                    <a class="active">数据</a>
+                </div>
+                <div class="col-md-4">
+                    <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--测试开始-->
+
+                    <div ng-controller="DropdownCtrl">
+                        <!-- Single button -->
+                        <div class="btn-group" uib-dropdown is-open="status.isopen">
+                            <span id="single-button" uib-dropdown-toggle ng-disabled="disabled" class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+
+                            <ul uib-dropdown-menu class="dropdown-menu-right" role="menu" aria-labelledby="single-button">
+                                <li role="menuitem"><a ng-click="open()" href="">创建Class</a></li>
+
+                                <!--创建类模版开始-->
+                                    <script type="text/ng-template" id="createClazzModalContent.html">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+                                                ×
+                                            </button>
+                                            <h3 class="modal-title">创建Class</h3>
+                                        </div>
+                                        <div class="modal-body">
+
+                                            <div class="form-group">
+                                                <input type="text" class="form-control ng-pristine ng-valid" ng-model="newClassName" name="newClassName" placeholder="Class Name">
+
+                                            </div>
+
+                                            <div class="form-group checkbox custom-control">
+                                                <label>
+                                                    <input type="checkbox" ng-model="classType" class="ng-pristine ng-valid">
+                                                    <span class="control-indicator"></span>
+                                                    创建
+                                                    <a href="" target="_blank">
+                                                        日志表
+                                                        <i class="icon icon-external"></i>
+                                                    </a>
+                                                </label>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <p class="help-block no-margin-bottom ng-scope" translate="DATA_CLASS_ADD_TIP">Class 名称只能包含字母、数字、下划线，必须以字母开头</p>
+
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+                                            <button class="btn btn-primary" type="button" ng-click="createClazz()">创建类</button>
+
+                                        </div>
+                                    </script>
+                                <!--创建类模版结束-->
+
+
+                                <li role="menuitem"><a href="#">数据导入</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <!--测试结束-->
+                </div>
+
+
+                <div class="col-md-12">
+                    <input type="text" id="searchText" class="form-control" placeholder="class Name">
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <ul>
+
+            <li class="cla-item ng-scope" style="position: relative;" ng-repeat="clazz in clazzs">
+                <a ui-sref="app.data.clazz({clazz:clazz.name})">
+
+                <span class="cla-name">{{clazz.name}}</span>
+
+                    <span class="cla-count">{{clazz.count}}</span>
+
+                </a>
+
+            </li>
+
+                </ul>
+
+
+        </div>
+    </div>
+
+
+    <div class="col-md-10" ui-view>
+
+    </div>
+</div>

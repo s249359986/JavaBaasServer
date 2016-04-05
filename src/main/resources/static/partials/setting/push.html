@@ -1,0 +1,14 @@
+<div ng-controller="pushSettingCtrl">
+    <h4>极光推送</h4>
+
+    <div class="form-group">
+        <label>key</label>
+        <input class="form-control" ng-model="pushAccount.key"/>
+    </div>
+    <div class="form-group">
+        <label>secret</label>
+        <input type="password" class="form-control" ng-model="pushAccount.secret"/>
+    </div>
+    <button class="btn btn-success" ng-click="setPushAccount()">保存</button>
+</div>
+

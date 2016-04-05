@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html ng-app="baas">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <!--<script src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+
+
+
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.5.0-rc.0/angular.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="http://cdn.bootcss.com/angular-loading-bar/0.8.0/loading-bar.min.js"></script>
+    <link href="http://cdn.bootcss.com/angular-loading-bar/0.8.0/loading-bar.min.css" rel="stylesheet">
+
+
+
+
+    <!--<script src="./lib/datetimepicker/jquery.datetimepicker.css"></script>-->
+
+    <!--引入slickgrid开始-->
+
+    <link rel="stylesheet" href="lib/slickgrid/css/slick.grid.css" type="text/css"/>
+
+
+
+    <!--<link rel="stylesheet" href="lib/slickgrid/css/smoothness/jquery-ui-1.8.16.custom.css" type="text/css"/>-->
+
+
+
+    <link rel="stylesheet" href="lib/slickgrid/jquery-ui-1.11.4.custom/jquery-ui.min.css" type="text/css"/>
+
+
+
+
+
+
+
+
+
+    <link rel="stylesheet" href="./lib/datetimepicker/jquery.datetimepicker.css" type="text/css"/>
+
+
+
+    <link rel="stylesheet" href="lib/slickgrid/plugins/slick.headermenu.css" type="text/css"/>
+
+    <link rel="stylesheet" href="lib/slickgrid/plugins/slick.headermenu.css" type="text/css"/>
+    <link rel="stylesheet" href="lib/slickgrid/controls/slick.columnpicker.css" type="text/css"/>
+
+    <script src="lib/slickgrid/jquery-1.7.min.js"></script>
+
+
+    <!--上传-->
+    <script src="lib/jquery-form/jquery.form.js"></script>
+
+
+
+
+
+    <!--引入baasSdk及依赖开始-->
+    <script src="lib/underscore/underscore.js"></script>
+    <script src="lib/baas/BAASJS.js"></script>
+
+    <!--引入baasSdk及依赖结束-->
+
+
+
+
+    <script src="lib/slickgrid/jquery.event.drag-2.2.js"></script>
+    <!--<script src="lib/slickgrid/jquery-ui-timepicker-addon.js"></script>-->
+
+    <script src="lib/slickgrid/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+    <!--<script src="lib/slickgrid/lib/jquery-ui-1.8.16.custom.min.js"></script>-->
+
+
+
+
+
+
+    <script src="lib/datetimepicker/jquery.datetimepicker.js"></script>
+
+
+
+    <script src="lib/slickgrid/slick.core.js"></script>
+
+    <script src="lib/slickgrid/plugins/slick.cellrangedecorator.js"></script>
+    <script src="lib/slickgrid/plugins/slick.cellrangeselector.js"></script>
+    <script src="lib/slickgrid/plugins/slick.cellselectionmodel.js"></script>
+    <script src="lib/slickgrid/plugins/slick.rowselectionmodel.js"></script>
+
+    <script src="lib/slickgrid/plugins/slick.checkboxselectcolumn.js"></script>
+
+    <script src="lib/slickgrid/controls/slick.columnpicker.js"></script>
+
+    <script src="lib/slickgrid/plugins/slick.headermenu.js"></script>
+
+    <!--formatter暂时移到gridService中-->
+    <!--<script src="lib/slickgrid/slick.formatters.js"></script>-->
+
+
+
+    <!--editors暂时移到gridService中-->
+    <!--<script src="lib/slickgrid/slick.editors.js"></script>-->
+
+
+
+
+    <script src="lib/slickgrid/slick.grid.js"></script>
+
+    <!--<script src="lib/slickgrid/plugins/slick.headerbuttons.js"></script>-->
+
+
+
+
+
+
+
+    <!--引入slickgrid结束-->
+
+    <script src="js/app.js"></script>
+
+
+    <!--sdh引入开始-->
+
+    <script src="js/util/util.js"></script>
+
+
+
+
+
+
+    <script src="js/directive/directive.js"></script>
+
+    <script src="js/service/clazzService.js"></script>
+    <script src="js/service/fieldService.js"></script>
+    <script src="js/service/objectService.js"></script>
+    <script src="js/service/gridService.js"></script>
+    <script src="js/service/userService.js"></script>
+    <script src="js/service/fileService.js"></script>
+
+
+    <script src="js/controller/dataCtrl.js"></script>
+
+    <!--sdh引入结束-->
+    <script src="js/controller/appCtrl.js"></script>
+    <script src="js/controller/pushCtrl.js"></script>
+    <!--<script src="js/service/clazzService.js"></script>-->
+    <!--<script src="js/service/fieldService.js"></script>-->
+    <!--<script src="js/service/objectService.js"></script>-->
+    <!--<script src="js/controller/dataCtrl.js"></script>-->
+
+    <script src="js/service/appService.js"></script>
+    <script src="js/service/pushService.js"></script>
+    <script src="js/service/rest.js"></script>
+    <script src="js/util/md5.js"></script>
+    <script src="lib/angular-ui-notification.min.js"></script>
+    <script src="lib/ui-bootstrap-tpls-0.14.3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style/app.css">
+    <link rel="stylesheet" type="text/css" href="lib/angular-ui-notification.min.css">
+</head>
+
+<body ui-view>
+
+</body>
+</html>

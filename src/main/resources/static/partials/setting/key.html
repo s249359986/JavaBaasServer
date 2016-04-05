@@ -1,0 +1,27 @@
+<div ng-controller="appCtrl">
+    <table class="table">
+        <tr>
+            <td>AppId
+                <button class="btn btn-default btn-xs" uib-popover="应用key" popover-trigger="mouseenter">help?</button>
+            </td>
+            <td><code>{{app.id}}</code></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>AppKey
+                <button class="btn btn-default btn-xs" uib-popover="应用key" popover-trigger="mouseenter">help?</button>
+            </td>
+            <td><code>{{app.key}}</code></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MasterKey
+                <button class="btn btn-default btn-xs" uib-popover="应用key" popover-trigger="mouseenter">help?</button>
+            </td>
+            <td><code>{{app.masterKey}}</code></td>
+            <td>
+                <button class="btn btn-danger btn-xs" ng-click="resetMasterKey(app.id)">重置</button>
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,30 @@
+<div class="row" ng-controller="appCtrl as appCtrl">
+    <div class="col-sm-4 col-md-3" ng-repeat="app in apps">
+        <div class="thumbnail text-center">
+            <a class="btn btn-link app-item-name" ui-sref="app.data({id:app.id})">{{app.name}}</a>
+
+            <div class="row">
+                <div class="col-xs-4 figure"><span>{{app.userCount}}</span></div>
+                <div class="col-xs-4 figure"><span>{{app.yesterday}}</span></div>
+                <div class="col-xs-4 figure"><span>{{app.currentMonth}}</span></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 help-block">
+                    <small>用户数</small>
+                </div>
+                <div class="col-xs-4 help-block">
+                    <small>昨日请求</small>
+                </div>
+                <div class="col-xs-4 help-block">
+                    <small>本月请求</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <button class="btn btn-success">快速入门</button>
+        <a class="btn btn-primary" ui-sref="new">创建应用</a>
+    </div>
+</div>

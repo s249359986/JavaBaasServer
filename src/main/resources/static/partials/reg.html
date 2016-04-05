@@ -1,0 +1,276 @@
+<div class="container-fluid dashboard-content" style="padding-top: 0px;">
+
+
+    <!-- ngView:  --><div ng-view="" class="ng-scope">
+
+    <h3 class="ng-scope"></h3>
+
+    <div class="row ng-scope">
+        <div class="col-sm-4 col-sm-offset-4">
+            <form class="login-form ng-dirty ng-valid ng-valid-required" role="form" id="signupform" name="signupForm">
+                <!-- ngRepeat: err in signuperror -->
+
+
+
+                <div class="form-group">
+                    <label for="inputUsername" class="control-label">用户名 <b class="has-required ng-scope" data-title="必填" bs-tooltip="" data-placement="top">Required</b></label>
+                    <input type="text" class="form-control" id="inputUsername" name="username" tabindex="1" required="">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputEmail" class="control-label">邮箱 <b class="has-required ng-scope" data-title="必填" bs-tooltip="" data-placement="top">Required</b></label>
+                    <input type="email" class="form-control" id="inputEmail" name="email" tabindex="2" required="">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPhone" class="control-label">手机 <b class="has-required ng-scope" data-title="必填，目前仅支持中国大陆手机号码" bs-tooltip="" data-placement="top">Required</b></label>
+                    <input type="tel" class="form-control" id="inputPhone" name="phone" tabindex="3" required="">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputPassword" class="control-label">密码 <b class="has-required ng-scope" data-title="必填，至少 8 位，同时包含数字、小写字母、大写字母" bs-tooltip="" data-placement="top">Required</b></label>
+                    <input type="password" class="form-control ng-animate ng-pristine-remove ng-dirty-add ng-invalid-remove ng-valid-add ng-invalid-required-remove ng-pristine-remove-active ng-dirty ng-dirty-add-active ng-invalid-remove-active ng-valid ng-valid-add-active ng-invalid-required-remove-active ng-valid-required" id="inputPassword" ng-model="password" name="password" tabindex="4" required="" style="">
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox custom-control">
+                        <label>
+                            <input type="checkbox" ng-model="accept" tabindex="6" class="ng-pristine ng-valid">
+                            <span class="control-indicator"></span>
+                            我已阅读并同意 <a href="/terms.html" target="_blank">LeanCloud 使用协议</a>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default ng-scope" ng-click="signup()" translate="FORM_REGISTRY" tabindex="7" ng-disabled="!accept" disabled="disabled">注册</button>
+                </div>
+            </form>
+            <div class="clearfix"></div>
+
+        </div>
+    </div>
+
+</div>
+
+    <script type="text/ng-template" id="/signin.html">
+        <h3></h3>
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <form class="login-form" role="form" id="signinform">
+                    <div class="form-group">
+                        <label for="" class="control-label">第三方登录</label>
+                        <div class="thirdparty-login-btns">
+                            <div class="table-space">
+                                <a href="/1/oauth2/goto/github" class="btn btn-github"><i class="fa fa-github"></i>GitHub</a>
+                            </div>
+                            <!-- <div class="table-space">
+                              <a href="/1/oauth2/goto/csdn"   class="btn btn-csdn"><i class="fa fa-csdn"></i>CSDN</a>
+                            </div> -->
+                            <div class="table-space">
+                                <a href="/1/oauth2/goto/weibo"  class="btn btn-weibo"><i class="fa fa-weibo"></i>微博</a>
+                            </div>
+                            <div class="table-space">
+                                <a href="/1/oauth2/goto/qq" class="btn btn-qq"> QQ </a>
+                            </div>
+                            <!--
+                            <div class="table-space dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="loginSourceDropdown" data-toggle="dropdown">
+                                更多
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="loginSourceDropdown">
+                                <li><a href="/1/oauth2/goto/qq">QQ 登录</a></li>
+                                <li><a href="/1/oauth2/goto/oschina">OsChina 登录</a></li>
+                              </ul>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="control-label">邮箱</label>
+                        <input type="email" class="form-control" id="inputEmail" ng-model="email" name="email" tabindex="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="control-label">密码（<a href="#/forgotpass" tabindex="4">忘记密码</a>）</label>
+                        <input type="password" class="form-control" id="inputPassword" ng-model="password" name="password" tabindex="2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" id="loginBtn" ng-click="signin()" translate="ACTION_LOGIN" tabindex="3"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </script>
+    <script type="text/ng-template" id="/signup.html">
+
+        <h3></h3>
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <form class="login-form" role="form" id="signupform" name="signupForm">
+                    <div class="callout callout-danger" ng-repeat=" err in signuperror" ng-bind-html ="err | to_trusted">
+                        <button type="button" class="close" ng-click="deleteAlert()" data-dismiss="alert">&times;</button>
+                        {{err}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="" class="control-label">第三方帐号注册</label>
+                        <div class="thirdparty-login-btns">
+                            <div class="table-space">
+                                <a href="/1/oauth2/goto/github" class="btn btn-github"><i class="fa fa-github"></i>GitHub</a>
+                            </div>
+                            <!--
+                            <div class="table-space">
+                              <a href="/1/oauth2/goto/csdn"   class="btn btn-csdn"><i class="fa fa-csdn"></i>CSDN</a>
+                            </div>
+                            -->
+                            <div class="table-space">
+                                <a href="/1/oauth2/goto/weibo"  class="btn btn-weibo"><i class="fa fa-weibo"></i>微博</a>
+                            </div>
+                            <div class="table-space">
+                                <a href="/1/oauth2/goto/qq" class="btn btn-qq"> QQ </a>
+                            </div>
+                            <!--
+                            <div class="table-space dropdown">
+                              <button class="btn btn-default dropdown-toggle" type="button" id="loginSourceDropdown" data-toggle="dropdown">
+                                更多
+                              </button>
+                              <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="loginSourceDropdown">
+                                <li><a href="/1/oauth2/goto/qq">通过 QQ 注册</a></li>
+                              </ul>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputUsername" class="control-label">用户名 <b class="has-required" data-title="必填" bs-tooltip data-placement="top">Required</b></label>
+                        <input type="text" class="form-control" id="inputUsername" name="username" tabindex="1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputEmail" class="control-label">邮箱 <b class="has-required" data-title="必填" bs-tooltip data-placement="top">Required</b></label>
+                        <input type="email" class="form-control" id="inputEmail" name="email" tabindex="2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPhone" class="control-label">手机 <b class="has-required" data-title="必填，目前仅支持中国大陆手机号码" bs-tooltip data-placement="top">Required</b></label>
+                        <input type="tel" class="form-control" id="inputPhone" name="phone" tabindex="3" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputPassword" class="control-label">密码 <b class="has-required" data-title="必填，至少 8 位，同时包含数字、小写字母、大写字母" bs-tooltip data-placement="top">Required</b></label>
+                        <input type="password" class="form-control" id="inputPassword" ng-model="password" name="password" tabindex="4" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="checkbox custom-control">
+                            <label>
+                                <input type="checkbox" ng-model="accept" tabindex="6">
+                                <span class="control-indicator"></span>
+                                我已阅读并同意 <a href="/terms.html" target="_blank">LeanCloud 使用协议</a>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" ng-click="signup()" translate="FORM_REGISTRY" tabindex="7" ng-disabled="!accept"></button>
+                    </div>
+                </form>
+                <div class="clearfix"></div>
+
+            </div>
+        </div>
+
+    </script>
+
+    <script type="text/ng-template" id="/apply.html">
+        <form class="form-horizontal login-form" id="applyform" >
+            <legend translate="ACTION_APPLY_ACCOUNT"></legend>
+
+            <div class="callout callout-danger" ng-repeat=" err in applyerror" ng-bind-html ="err | to_trusted">
+                <button type="button" class="close" ng-click="deleteAlert()" data-dismiss="alert">&times;</button>
+
+            </div>
+
+            <div class="control-group">
+                <label class="control-label">{{'FORM_EMAIL'|translate}}*</label>
+                <div class="controls">
+                    <input type="text" id="inputEmail" name="email" required>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" >{{'FORM_COMPANY'|translate}}*</label>
+                <div class="controls">
+                    <input type="text" id="inputPassword" name="company"   required>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" >{{'FORM_POSITION'|translate}}*</label>
+                <div class="controls">
+                    <input type="text"  name="title">
+
+                </div>
+            </div>
+
+            <div class="control-group">
+                <label class="control-label" translate="FORM_PROJECT"></label>
+                <div class="controls">
+                    <textarea name="description"></textarea>
+
+
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+
+                    <button type="submit" class="btn btn-primary" ng-click="apply()" translate="ACTION_APPLY">申请</button>
+                </div>
+            </div>
+        </form>
+    </script>
+
+    <script type="text/ng-template" id="/forgotpass.html">
+
+        <h3></h3>
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+                <p>忘记密码</p>
+
+                <form id="forgotform" class="login-form" role="form">
+                    <div class="callout callout-danger" ng-repeat=" err in forgoterr">
+                        <button type="button" class="close" ng-click="deleteAlert()" data-dismiss="alert">&times;</button>
+                        {{err}}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputForgotEmail" class="control-label">注册邮箱 <b class="has-required" data-title="必填" bs-tooltip data-placement="top">Required</b></label>
+                        <input type="email" class="form-control" id="inputForgotEmail" name="email" tabindex="1" ng-model="user.email" required>
+                    </div>
+
+                    <div class="form-group clearfix">
+                        <label for="inputforgotCapcha" class="control-label" style="display: block;">验证码 <b class="has-required" data-title="必填" bs-tooltip data-placement="top">Required</b></label>
+                        <div class="col-xs-5" style="padding-left: 0;">
+                            <input type="text" class="form-control" id="inputforgotCapcha" name="captcha" ng-model="captcha" tabindex="2" maxlength="4" required>
+                        </div>
+                        <a id="captcha-wrapper" ng-click="changeCaptcha()" title="点击更换"><img src="{{captchaurl}}"></a>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-default" ng-click="sendForgot()" translate="FORM_FIND_PASS" tabindex="3"></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </script>
+
+
+</div>

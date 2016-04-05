@@ -1,0 +1,74 @@
+<div class="container-fluid" ng-controller="appCtrl">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">JavaBaas</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li class="dropdown-toggle">
+                <a href="" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-th-large"></span>
+                    <span ng-show="app">{{app.name}} </span>
+                    <span ng-hide="app">应用 </span>
+                    <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">所有应用</a></li>
+                    <li><a href="#">创建新应用</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li ng-repeat="app in apps"><a ui-sref="app.data({id:app.id})">{{app.name}}</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav">
+            <li ng-show="app" ng-class="{active:$state.includes('app.data')}">
+                <a ui-sref="app.data({id:app.id})">
+                    <span class="glyphicon glyphicon-th-list"></span> 存储
+                </a>
+            </li>
+            <li ng-show="app">
+                <a>
+                    <span class="glyphicon glyphicon-indent-right"></span> 云代码
+                </a>
+            </li>
+            <li ng-show="app">
+                <a ui-sref="app.stat({id:app.id})">
+                    <span class="glyphicon glyphicon-signal"></span> 统计
+                </a>
+            </li>
+            <li ng-show="app">
+                <a ui-sref="app.push({id:app.id})">
+                    <span class="glyphicon glyphicon-comment"></span> 推送
+                </a>
+            </li>
+            <li ng-show="app" ng-class="{active:$state.includes('.setting')}">
+                <a ui-sref="app.setting.common({id:app.id})">
+                    <span class="glyphicon glyphicon-tasks"></span> 设置
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.javabaas.com">
+                    <span class="glyphicon glyphicon-heart-empty"></span> 帮助
+                </a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                   aria-expanded="false">账号
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a ng-click="signout()">登出</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
