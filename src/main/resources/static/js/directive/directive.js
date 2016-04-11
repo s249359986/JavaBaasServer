@@ -28,9 +28,6 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
     {
 
 
-        var tempStoreName="columns-view-"+globalId+"-"+globalClazz;
-
-          var tempStore=JSON.parse(localStorage[tempStoreName]);
 
 
 
@@ -42,7 +39,17 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
 
 
         columns.push(checkboxSelector.getColumnDefinition());
-
+        var tempStoreName="columns-view-"+globalId+"-"+globalClazz;
+        var tempStore=[];
+        if(localStorage[tempStoreName])
+        {
+            tempStore=JSON.parse(localStorage[tempStoreName]);
+        }
+        else
+        {
+            columns.push({id:"_id",name:"_id",field:"_id",formatter:Slick.Formatters.SelfIdString});
+            columns.push({id:"acl",name:"acl",field:"acl",formatter:Slick.Formatters.SelfAcl,editor:Slick.Editors.SelfAcl,bgdbScope:bgdbScope,baasOpt:{type:20}});//SelfAcl  SelfAcl  bgdbScope
+        }
 
         for(var m=0; m<tempStore.length;m++)
         {
@@ -58,6 +65,7 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
             }
 
         }
+
 
 
 
@@ -182,6 +190,35 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
 
             }
 
+        }
+
+        if(tempStore.length==0)
+        {
+
+
+            columns.push({id:"createdAt",name:"createdAt",field:"createdAt",formatter:Slick.Formatters.SelfDate,bgdbScope:bgdbScope,baasOpt:{type:4},header:{menu:{items:[{
+                // iconImage: "../images/sort-asc.gif",
+                title: "升序",
+                command: "desc"
+            },{
+                //   iconImage: "../images/sort-asc.gif",
+                title: "降序",
+                command: "asc"
+            }]}
+
+            }});//SelfAcl  SelfAcl  bgdbScope
+
+            columns.push({id:"updatedAt",name:"updatedAt",field:"updatedAt",formatter:Slick.Formatters.SelfDate,bgdbScope:bgdbScope,baasOpt:{type:4},header:{menu:{items:[{
+                //   iconImage: "../images/sort-asc.gif",
+                title: "升序",
+                command: "desc"
+            },{
+                //  iconImage: "../images/sort-asc.gif",
+                title: "降序",
+                command: "asc"
+            }]}
+
+            }});//SelfAcl  SelfAcl  bgdbScope
         }
 
 
