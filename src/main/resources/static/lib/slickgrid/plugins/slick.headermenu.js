@@ -129,6 +129,9 @@
     }
 
     function handleHeaderCellRendered(e, args) {
+
+
+
       var column = args.column;
       var menu = column.header && column.header.menu;
 
@@ -151,7 +154,7 @@
         }
 
         $el
-          .bind("click", showMenu)
+          .bind("click",args,showMenu)
           .appendTo(args.node);
       }
     }
@@ -167,7 +170,8 @@
 
 
     function showMenu(e) {
-        debugger;
+
+
 
       var $menuButton = $(this);
       var menu = $menuButton.data("menu");
@@ -232,15 +236,28 @@
 
       // Position the menu.
 
+
+
+        /*
+        *
+        * auth:sdh
+        * data:06-4-10
+        * 修复最右侧下拉菜单无法显示bug
+        *
+        * */
+
+        var args= e.data;
+        var tempColumn=args.grid.getColumns();
+        var tempColumnWidth=tempColumn[1].width;
         var tempTop=$(this).offset().top + $(this).height();
+        var tempWinWidth=$(window).width();
         var tempLeft=$(this).offset().left;
+        if((tempColumnWidth+tempLeft+30)>tempWinWidth)
+        {
+            tempLeft-=$menu.outerWidth();
+
+        }
         var tempObjOffset={top:tempTop,left:tempLeft};
-
-debugger;
-
-
-
-
 
         $menu.offset(tempObjOffset);
 

@@ -26,6 +26,14 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
 
     function initColumns(result)
     {
+
+
+        var tempStoreName="columns-view-"+globalId+"-"+globalClazz;
+
+          var tempStore=JSON.parse(localStorage[tempStoreName]);
+
+
+
         var tempClazzService=clazzService.getClazzsModel();
         columns=[];
          checkboxSelector = new Slick.CheckboxSelectColumn({
@@ -34,10 +42,27 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
 
 
         columns.push(checkboxSelector.getColumnDefinition());
-        columns.push({id:"_id",name:"_id",field:"_id",formatter:Slick.Formatters.SelfIdString});
 
 
-        columns.push({id:"acl",name:"acl",field:"acl",formatter:Slick.Formatters.SelfAcl,editor:Slick.Editors.SelfAcl,bgdbScope:bgdbScope,baasOpt:{type:20}});//SelfAcl  SelfAcl  bgdbScope
+        for(var m=0; m<tempStore.length;m++)
+        {
+            if("_id"==tempStore[m].name&&tempStore[m].show)
+            {
+                columns.push({id:"_id",name:"_id",field:"_id",formatter:Slick.Formatters.SelfIdString});
+
+            }
+            if("acl"==tempStore[m].name&&tempStore[m].show)
+            {
+                columns.push({id:"acl",name:"acl",field:"acl",formatter:Slick.Formatters.SelfAcl,editor:Slick.Editors.SelfAcl,bgdbScope:bgdbScope,baasOpt:{type:20}});//SelfAcl  SelfAcl  bgdbScope
+
+            }
+
+        }
+
+
+
+
+
 
 
         for(var j in result)
@@ -60,6 +85,25 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
             var tempTypeText="";
             var tempTypeEditor=Slick.Editors.SelfNumber||Slick.Editors.Text;
             var tempFormatterValue=Slick.Formatters.SelfDefault;
+
+
+            var wrapContinue=false;
+                for(var m=0; m<tempStore.length;m++)
+                {
+                    if(result[j].name==tempStore[m].name&&(!tempStore[m].show))
+                    {
+                        wrapContinue=true;
+                        break;
+                    }
+                }
+            if(wrapContinue)
+            {
+                continue;
+            }
+
+
+
+
                 for(var k in BWCLAZZTYPE)
                 {
                     if(BWCLAZZTYPE[k].value==result[j].type)
@@ -100,30 +144,54 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
             }});
             }
 
-        columns.push({id:"createdAt",name:"createdAt",field:"createdAt",formatter:Slick.Formatters.SelfDate,bgdbScope:bgdbScope,baasOpt:{type:4},header:{menu:{items:[{
-       // iconImage: "../images/sort-asc.gif",
-        title: "升序",
-        command: "desc"
-    },{
-     //   iconImage: "../images/sort-asc.gif",
-        title: "降序",
-        command: "asc"
-    }]}
-
-    }});//SelfAcl  SelfAcl  bgdbScope
 
 
-        columns.push({id:"updatedAt",name:"updatedAt",field:"updatedAt",formatter:Slick.Formatters.SelfDate,bgdbScope:bgdbScope,baasOpt:{type:4},header:{menu:{items:[{
-         //   iconImage: "../images/sort-asc.gif",
-            title: "升序",
-            command: "desc"
-        },{
-          //  iconImage: "../images/sort-asc.gif",
-            title: "降序",
-            command: "asc"
-        }]}
 
-        }});//SelfAcl  SelfAcl  bgdbScope
+
+        for(var m=0; m<tempStore.length;m++)
+        {
+            if("createdAt"==tempStore[m].name&&tempStore[m].show)
+            {
+
+                columns.push({id:"createdAt",name:"createdAt",field:"createdAt",formatter:Slick.Formatters.SelfDate,bgdbScope:bgdbScope,baasOpt:{type:4},header:{menu:{items:[{
+                    // iconImage: "../images/sort-asc.gif",
+                    title: "升序",
+                    command: "desc"
+                },{
+                    //   iconImage: "../images/sort-asc.gif",
+                    title: "降序",
+                    command: "asc"
+                }]}
+
+                }});//SelfAcl  SelfAcl  bgdbScope
+
+            }
+            if("updatedAt"==tempStore[m].name&&tempStore[m].show)
+            {
+                columns.push({id:"updatedAt",name:"updatedAt",field:"updatedAt",formatter:Slick.Formatters.SelfDate,bgdbScope:bgdbScope,baasOpt:{type:4},header:{menu:{items:[{
+                    //   iconImage: "../images/sort-asc.gif",
+                    title: "升序",
+                    command: "desc"
+                },{
+                    //  iconImage: "../images/sort-asc.gif",
+                    title: "降序",
+                    command: "asc"
+                }]}
+
+                }});//SelfAcl  SelfAcl  bgdbScope
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
 
     }
     function initData(result)
@@ -293,6 +361,9 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
             var clazz =globalClazz= scope.ctr_clazz;
             if (id&&clazz) {
                 fieldService.getDataList(id,clazz).then(function(data){
+
+
+
 
                     initColumns(data);
                     objectService.setPage({skip:0,limit:20});

@@ -38,6 +38,21 @@ app.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) 
                 }
             }
         })
+//        .state('login', {//登录
+//            url: '/login',
+//            views: {
+//                '': {
+//                    templateUrl: 'partials/main.html'
+//                },
+//                'title@login': {
+//                    templateUrl: 'partials/title.html'
+//                },
+//                'main@login': {
+//                    controller:'loginCtrl',
+//                    templateUrl: 'partials/login.html'
+//                }
+//            }
+//        })
         .state('login', {//登录
             url: '/login',
             views: {
@@ -45,7 +60,7 @@ app.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) 
                     templateUrl: 'partials/main.html'
                 },
                 'title@login': {
-                    templateUrl: 'partials/title.html'
+                    templateUrl: 'partials/loginTitle.html'
                 },
                 'main@login': {
                     controller:'loginCtrl',
@@ -53,7 +68,15 @@ app.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) 
                 }
             }
         })
-//        .state('login', {//登录
+
+
+
+
+
+
+
+
+//        .state('login', {//登录 单独页面
 //            controller:'loginCtrl',
 //            url: '/login',
 //            templateUrl: 'partials/login.html'
@@ -66,7 +89,7 @@ app.config(function ($stateProvider, $urlRouterProvider, cfpLoadingBarProvider) 
                     templateUrl: 'partials/main.html'
                 },
                 'title@reg': {
-                    templateUrl: 'partials/title.html'
+                    templateUrl: 'partials/loginTitle.html'
                 },
                 'main@reg': {
                     templateUrl: 'partials/reg.html'

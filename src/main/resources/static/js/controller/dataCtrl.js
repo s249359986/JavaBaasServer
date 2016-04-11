@@ -46,9 +46,22 @@ angular.module('baas').controller('dataCtrl', ['$rootScope','$scope', '$statePar
 
     var id = $stateParams.id;
     if (id) {
+
+
+
+
+        $rootScope.$on('updateClass',function(event,data){
+            clazzService.getClazz(id).then(function(data){
+                $scope.clazzs =data;
+            },function(data1){
+
+            });
+        });
+
+
+
+
         clazzService.getClazz(id).then(function(data){
-
-
             $scope.clazzs =data;
         },function(data1){
 
@@ -57,7 +70,7 @@ angular.module('baas').controller('dataCtrl', ['$rootScope','$scope', '$statePar
 
 
 }]);
-angular.module('baas').controller('clazzCtrl', ['$scope', '$stateParams','clazzService','gridService','objectService', function ($scope, $stateParams,clazzService,gridService,objectService) {
+angular.module('baas').controller('clazzCtrl', ['$scope', '$stateParams','clazzService','gridService','objectService','$rootScope','$uibModal', function ($scope, $stateParams,clazzService,gridService,objectService,$rootScope,$uibModal) {
     //获取当前应用信息
 
     $scope.ctr_id=$stateParams.id;
@@ -113,6 +126,7 @@ angular.module('baas').controller('clazzCtrl', ['$scope', '$stateParams','clazzS
         var tempSure = window.confirm("确认删除所有选中的数据?");
         if(tempSure)
         {
+
             var tempDelRows=[];
             var grid=gridService.getGrid();
             var tempRows=grid.getSelectedRows();
@@ -120,17 +134,38 @@ angular.module('baas').controller('clazzCtrl', ['$scope', '$stateParams','clazzS
             for(var i=0;i<tempRows.length;i++)
             {
                 tempDelRows.push(dd[tempRows[i]]._id);
-
-                dd.splice((tempRows[i]),1);
             }
-            objectService.deleteData($stateParams.id,$stateParams.clazz,tempDelRows);
-            grid.setSelectedRows([]);
-            grid.invalidateAllRows();
-            grid.updateRowCount();
-            grid.render();
+            for(var k=0;k<tempRows.length;k++)
+            {
+                dd.splice((tempRows[k]),1);
+            }
+            objectService.deleteData($stateParams.id,$stateParams.clazz,tempDelRows).then(function(data){
+                $rootScope.$broadcast("bgDgPageOn");//通知条数
+                $rootScope.$broadcast('updateClass');//通知菜单
+                grid.setSelectedRows([]);
+                grid.invalidateAllRows();
+                grid.updateRowCount();
+                grid.render();
+            });
         }
-
     }
+    $scope.openSetting=function(){
+        var modalInstance = $uibModal.open({
+            //animation: $scope.animationsEnabled,
+            templateUrl: 'myModalSetting.html',
+            controller: 'SettingModalInstanceCtrl'
+//            size: size
+//            resolve: {
+//                items: function () {
+//                    return $scope.items;
+//                }
+//            }
+        });
+
+
+
+
+    };
 
 
 }]);
@@ -139,12 +174,84 @@ angular.module('baas').controller('clazzCtrl', ['$scope', '$stateParams','clazzS
 
 
 
+angular.module('baas').controller('SettingModalInstanceCtrl', ['$scope','$uibModal','fieldService','$uibModalInstance','$window','$stateParams', function ($scope,$uibModal,fieldService,$uibModalInstance,$window,$stateParams) {
+
+    /*
+     *
+     *
+     * 打开设置字段隐藏窗口
+     *
+     *
+     * */
+    var tempId=$stateParams.id;
+    var tempClazz=$stateParams.clazz;
+    var tempStoreName="columns-view-"+tempId+"-"+tempClazz;
+
+
+    $scope.allVisible=true;
+
+
+var tempLocalStore=$window.localStorage;
+
+    if(tempLocalStore[tempStoreName])
+    {
+        $scope.schemaBak=JSON.parse(tempLocalStore[tempStoreName]);
+    }
+    else
+    {
+
+        fieldService.getDataList(tempId,tempClazz).then(function(data){
+
+            $scope.schemaBak=[
+                {name:"_id",show:true},
+                {name:"createdAt",show:true},
+                {name:"updatedAt",show:true}
+            ];
+            for(var i in data)
+            {
+                $scope.schemaBak.push({"name":data[i].name,show:true});
+            }
+
+
+            var tempJsonStr=JSON.stringify($scope.schemaBak);
+
+            tempLocalStore[tempStoreName]=tempJsonStr;
+
+        });
+
+    }
 
 
 
+    $scope.ok=function(){
+        var tempSchemaBak=$scope.schemaBak;
+        tempLocalStore[tempStoreName]=JSON.stringify(tempSchemaBak);
+        $uibModalInstance.dismiss('cancel');
+        $window.location.reload();
+    }
 
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+    $scope.changeAllColumnVisible=function(){
+        if($scope.allVisible)
+        {
+            for(var i=0;i<$scope.schemaBak.length;i++)
+            {
+                $scope.schemaBak[i].show=true;
+            }
+        }
+        else
+        {
+            for(var i=0;i<$scope.schemaBak.length;i++)
+            {
+                $scope.schemaBak[i].show=false;
+            }
 
+        }
 
+    }
+}]);
 
 
 
@@ -381,6 +488,9 @@ angular.module('baas').controller('deleteColumnCtrl', function ($scope, $uibModa
             }
             tempGrid.setColumns(tempColumn);
             tempGrid.render();
+
+            $uibModalInstance.dismiss('cancel');
+
         },function(){});
 
     };
@@ -622,6 +732,7 @@ $scope.pernum="20";
 
 
     $scope.$on('bgDgPageOn', function(event,data) {
+
         objectService.getACount(tempId,{"className":tempClazz}).then(function(data){
             var totalItems=data.data.count;
             $scope.totalPage="总共"+totalItems+"条";

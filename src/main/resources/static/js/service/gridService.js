@@ -371,7 +371,7 @@ angular.module('baas').factory('gridService', ['$q', 'rest','$window','$uibModal
 
                 }
                 $select = $("<SELECT tabIndex='0' class='editor-pointer-select  form-control'>"+tempOptionStr+"</SELECT>");
-                $input = $("<INPUT type=text class='editor-text' />");
+                $input = $("<INPUT type=text class='editor-pointer-input' />");
                 $select.appendTo(args.container);
                 $input.appendTo(args.container);
                 //$select.focus();
@@ -748,12 +748,13 @@ angular.module('baas').factory('gridService', ['$q', 'rest','$window','$uibModal
         }
 
         function TextEditor(args) {
+
             var $input;
             var defaultValue;
             var scope = this;
 
             this.init = function () {
-                $input = $("<INPUT type=text class='editor-text form-control' />")
+                $input = $("<INPUT type=text class='editor-text' />")
                     .appendTo(args.container)
                     .bind("keydown.nav", function (e) {
                         if (e.keyCode === $.ui.keyCode.LEFT || e.keyCode === $.ui.keyCode.RIGHT) {
@@ -973,13 +974,13 @@ angular.module('baas').factory('gridService', ['$q', 'rest','$window','$uibModal
 
             this.init = function () {
                 //$input = $("<INPUT type=text class='editor-text' />");
-                $input = $("<INPUT type='text'/>");
+                $input = $("<INPUT class='editor-text' type='text'/>");
                 $input.appendTo(args.container);
-
-
-
                 $input.focus().select();
-                $input.datetimepicker({value:'2015/04/15 05:03',step:10});
+
+                var tempDateValue=Util.Common.dateFormat(new Date());
+
+                $input.datetimepicker({value:tempDateValue,step:10});
                 $input.width($input.width() - 18);
             };
 

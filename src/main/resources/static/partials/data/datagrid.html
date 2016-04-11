@@ -112,6 +112,13 @@
             border-top-width: 0px;
             min-height: 526px;
         }
+
+
+
+
+
+
+
         /*bgdg.slick-wrap*/
         /*{*/
             /*min-height: 526px;*/
@@ -145,6 +152,140 @@
         /*{*/
             /*min-height: 526px!important;*/
         /*}*/
+
+
+
+
+
+
+        /* 编辑窗口的样式 cus-editor-text  */
+        .editor-text
+        {
+            width: 100%;
+            height: 100%;
+            border: 0;
+            margin: 0;
+            background: transparent;
+            outline: 0;
+            padding: 0;
+            resize: none;
+        }
+
+
+        /* 指针类型编辑框的样式 */
+
+        .editor-pointer-select
+        {
+            float: right;
+            width:30%;
+            height: 100%;
+            border: 0;
+            margin: 0;
+            background: transparent;
+            outline: 0;
+            padding: 0;
+            resize: none;
+
+        }
+        .editor-pointer-input
+        {
+            float: left;
+            width: 68%;
+            height: 100%;
+            border: 0;
+            margin: 0;
+            background: transparent;
+            outline: 0;
+            padding: 0;
+            resize: none;
+        }
+
+
+
+    /*设置列窗口的样式-开始*/
+        .switch {
+            position: relative;
+            margin: 20px 0;
+            overflow: auto;
+        }
+        .switch {
+            position: relative;
+            margin: 20px 0;
+            overflow: auto;
+        }
+        .radio, .checkbox {
+            position: relative;
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .switch-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+            right: 46px;
+            color: #999;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .switch-wrap {
+            float: right;
+            position: relative;
+            display: block;
+            vertical-align: top;
+            width: 40px;
+            height: 20px;
+            padding: 3px;
+            margin-top: -3px;
+            background-color: #fff;
+            border-radius: 18px;
+            box-sizing: content-box!important;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .switch-input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            opacity: 0;
+        }
+        .switch-label {
+            position: relative;
+            display: block;
+            height: inherit;
+            font-size: 10px;
+            text-transform: uppercase;
+            border: 1px solid #ccc;
+            border-radius: inherit;
+            transition: .15s ease-out;
+            transition-property: border-color opacity background;
+        }
+        input:checked~.switch-handle {
+            left: 25px;
+            background: #2bb367;
+            border-color: #2bb367;
+        }
+        .switch-handle {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 1px 5px rgba(0,0,0,.08);
+            transition: .15s ease-out;
+            transition-property: border-color left background;
+        }
+
+
+        /*设置列窗口的样式-结束*/
 
 
 
@@ -293,41 +434,40 @@
 <!--acl编辑模版结束-->
 
 
-
-
+<!--原bgdg的工具条-->
 <div ng-controller="ModalDemoCtrl">
-    <!--查询的窗口-->
-    <script type="text/ng-template" id="myModalContent.html">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
-                ×
-            </button>
-            <h3 class="modal-title">查询条件</h3>
-        </div>
-        <div class="modal-body">
+<!--查询的窗口-->
+<script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+            ×
+        </button>
+        <h3 class="modal-title">查询条件</h3>
+    </div>
+    <div class="modal-body">
 
 
 
 
 
-            <div class="form-inline" ng-repeat="c in conditions">
+        <div class="form-inline" ng-repeat="c in conditions">
 
 
-                <div class="form-group">
-                    <select class="form-control ng-pristine ng-valid" ng-model="c.field" ng-options="k as k for (k,v) in currentCla.schema" ng-change="c.condition=querys[currentCla.schema[c.field].type][0]" value=""><option value="" class="">选择列</option></select>
-                </div>
+            <div class="form-group">
+                <select class="form-control ng-pristine ng-valid" ng-model="c.field" ng-options="k as k for (k,v) in currentCla.schema" ng-change="c.condition=querys[currentCla.schema[c.field].type][0]" value=""><option value="" class="">选择列</option></select>
+            </div>
 
-                <div class="form-group">
-                    <!--<select class="form-control ng-pristine ng-valid" ng-model="c.condition" ng-options="k for k in querys[currentCla.schema[c.field].type]"  value=""><option value="" class="">选择列</option></select>-->
-
-
-
-                    <select class="form-control ng-pristine ng-valid" ng-model="c.condition" ng-options="k.value as k.label for k in querys[currentCla.schema[c.field].type]"  value=""><option value="" class="">选择列</option></select>
-
-                </div>
+            <div class="form-group">
+                <!--<select class="form-control ng-pristine ng-valid" ng-model="c.condition" ng-options="k for k in querys[currentCla.schema[c.field].type]"  value=""><option value="" class="">选择列</option></select>-->
 
 
-                <div class="form-group">
+
+                <select class="form-control ng-pristine ng-valid" ng-model="c.condition" ng-options="k.value as k.label for k in querys[currentCla.schema[c.field].type]"  value=""><option value="" class="">选择列</option></select>
+
+            </div>
+
+
+            <div class="form-group">
 
 
                     <span ng-hide="c.condition=='exists'||c.condition=='doesNotExist'" class="">
@@ -342,95 +482,222 @@
                                  <input class="form-control ng-pristine ng-valid ng-animate ng-hide-add ng-hide ng-hide-add-active" ng-hide="currentCla.schema[c.field].type=='3'" type="text" ng-model="c.value" style=" transition-property: background, border, opacity, color;transition-duration: 0.2s, 0.2s, 0.2s, 0.2s;">
                              </span>
 
-                </div>
-
-
-
-
-
-
-                <button type="button" class="close" ng-click="removeCondition($index)">
-                    ×
-                </button>
-
-
             </div>
 
-        </div>
-        <div class="modal-footer">
 
 
-            <button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+
+
+
+            <button type="button" class="close" ng-click="removeCondition($index)">
+                ×
+            </button>
+
+
         </div>
-    </script>
+
+    </div>
+    <div class="modal-footer">
+
+
+        <button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
 
 
 
 
 <!--添加列的窗口-->
 
-    <script type="text/ng-template" id="addColumnModal.html">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
-                ×
-            </button>
-            <h3 class="modal-title">添加列</h3>
+<script type="text/ng-template" id="addColumnModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+            ×
+        </button>
+        <h3 class="modal-title">添加列</h3>
+    </div>
+    <div class="modal-body form-horizontal">
+        <p class="text-error">
+        </p>
+        <div class="form-group">
+            <label for="form-data-col-add-name" class="col-sm-2 control-label">列名称</label>
+            <div class="col-sm-10">
+                <input id="form-data-col-add-name" class="form-control ng-pristine ng-valid" type="text" name="newColumnName" placeholder="Column Name" ng-model="newColumnName">
+                <p class="help-block ng-scope" translate="DATA_ADD_COLUMN_TIP">只能包含字母、数字、下划线，必须以字母或数字开头</p>
+            </div>
+
         </div>
-        <div class="modal-body form-horizontal">
-            <p class="text-error">
-            </p>
-            <div class="form-group">
-                <label for="form-data-col-add-name" class="col-sm-2 control-label">列名称</label>
-                <div class="col-sm-10">
-                    <input id="form-data-col-add-name" class="form-control ng-pristine ng-valid" type="text" name="newColumnName" placeholder="Column Name" ng-model="newColumnName">
-                    <p class="help-block ng-scope" translate="DATA_ADD_COLUMN_TIP">只能包含字母、数字、下划线，必须以字母或数字开头</p>
-                </div>
+
+        <div class="form-group">
+            <label for="form-data-col-add-type" class="col-sm-2 control-label"> 列类型</label>
+            <div class="col-sm-10">
+                <select id="form-data-col-add-type" class="form-control ng-pristine ng-valid" name="columnType" ng-model="newColumnType" ng-options="ty as ty for ty in fieldTypes" ng-init="newColumnType=fieldTypes[0]"></select>
+
 
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="form-data-col-add-type" class="col-sm-2 control-label"> 列类型</label>
-                <div class="col-sm-10">
-                    <select id="form-data-col-add-type" class="form-control ng-pristine ng-valid" name="columnType" ng-model="newColumnType" ng-options="ty as ty for ty in fieldTypes" ng-init="newColumnType=fieldTypes[0]"></select>
+        <div class="form-group ng-hide" ng-show="newColumnType=='Pointer'||newColumnType=='Relation'">
+            <label for="form-data-col-add-relation-name" class="col-sm-2 control-label"> 关联类名称 </label>
+            <div class="col-sm-10">
+                <select id="form-data-col-add-relation-name" class="form-control ng-pristine ng-valid" ng-model="newColumnRelCla" ng-options="v.name as v.name    for (k,v) in datas.clas"><option value="" class="">
+                    Target Class
+                </option><option value="0">_Role</option><option value="1">_Installation</option><option value="10">abc1</option><option value="11">a3</option><option value="12">a1</option><option value="13">_User</option><option value="2">_Follower</option><option value="3">_Followee</option><option value="4">_File</option><option value="5">_CloudLog</option><option value="6">TestObject</option><option value="7">sss</option><option value="8">llll</option><option value="9">lll</option></select>
+            </div>
+        </div>
 
-
-                </div>
+        <div class="form-group">
+            <label for="form-data-col-add-default-value" class="col-sm-2 control-label"> 默认值 </label>
+            <div class="col-sm-10">
+                <input id="form-data-col-add-default-value" type="text" class="form-control ng-pristine ng-valid" ng-model="columnDefault">
             </div>
 
-            <div class="form-group ng-hide" ng-show="newColumnType=='Pointer'||newColumnType=='Relation'">
-                <label for="form-data-col-add-relation-name" class="col-sm-2 control-label"> 关联类名称 </label>
-                <div class="col-sm-10">
-                    <select id="form-data-col-add-relation-name" class="form-control ng-pristine ng-valid" ng-model="newColumnRelCla" ng-options="v.name as v.name    for (k,v) in datas.clas"><option value="" class="">
-                        Target Class
-                    </option><option value="0">_Role</option><option value="1">_Installation</option><option value="10">abc1</option><option value="11">a3</option><option value="12">a1</option><option value="13">_User</option><option value="2">_Follower</option><option value="3">_Followee</option><option value="4">_File</option><option value="5">_CloudLog</option><option value="6">TestObject</option><option value="7">sss</option><option value="8">llll</option><option value="9">lll</option></select>
+        </div>
+        <div class="form-group ng-hide" ng-show="newColumnType == 'Number' ">
+            <label class="col-sm-2 control-label">    </label>
+            <div class="col-sm-10">
+                <div class="checkbox custom-control" style="margin-top: 0">
+                    <label>
+                        <input type="checkbox" ng-model="columnIncrement" class="ng-pristine ng-valid">
+                        <span class="control-indicator"></span>
+                        自增
+                    </label>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label for="form-data-col-add-default-value" class="col-sm-2 control-label"> 默认值 </label>
-                <div class="col-sm-10">
-                    <input id="form-data-col-add-default-value" type="text" class="form-control ng-pristine ng-valid" ng-model="columnDefault">
-                </div>
-
+        </div>
+        <div class="form-group">
+            <label for="form-data-col-add-comment" class="col-sm-2 control-label"> 列注释 </label>
+            <div class="col-sm-10">
+                <input id="form-data-col-add-comment" type="text" class="form-control ng-pristine ng-valid" ng-model="columnComment">
             </div>
-            <div class="form-group ng-hide" ng-show="newColumnType == 'Number' ">
-                <label class="col-sm-2 control-label">    </label>
-                <div class="col-sm-10">
-                    <div class="checkbox custom-control" style="margin-top: 0">
+
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2">  权限</label>
+            <div class="col-sm-10">
+
+                <div class="checkbox custom-control">
+                    <label>
+                        <input type="checkbox" ng-model="read_only" class="ng-pristine ng-valid">
+                        <span class="control-indicator"></span>
+                        只读
+                    </label>
+                </div>
+                <div class="checkbox custom-control ng-hide" ng-show="currentCla.name=='_User'">
+                    <label>
+                        <input type="checkbox" ng-model="user_private" class="ng-pristine ng-valid">
+                        <span class="control-indicator"></span>
+                        只限当前用户读写
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2"> 其他</label>
+            <div class="col-sm-10">
+                <div class="custom-form-inline custom-form-horizontal-form">
+                    <div class="checkbox custom-control">
                         <label>
-                            <input type="checkbox" ng-model="columnIncrement" class="ng-pristine ng-valid">
+                            <input type="checkbox" ng-model="columnRequired" class="ng-pristine ng-valid">
                             <span class="control-indicator"></span>
-                            自增
+                            必填项
+                        </label>
+                    </div>
+                    <div class="checkbox custom-control">
+                        <label>
+                            <input type="checkbox" ng-model="columnHidden" class="ng-pristine ng-valid">
+                            <span class="control-indicator"></span>
+                            客户端不可见
                         </label>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="ok()">创建</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+    </div>
+</script>
+
+
+
+
+
+
+
+
+<!--删除列的窗口-->
+<script type="text/ng-template" id="deleteColumnModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+            ×
+        </button>
+        <h3 class="modal-title">删除列</h3>
+    </div>
+    <div class="modal-body">
+
+        <select class="form-control ng-pristine ng-valid" ng-model="selectValue" ng-options="value.name as value.name for value in column"  value=""><option value="" class="">选择列</option></select>
+
+
+    </div>
+    <div class="modal-footer">
+
+        <!--<button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>-->
+        <!--<button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>-->
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<!--删除列的窗口结束-->
+
+
+
+
+<!--编辑列的窗口-->
+<script type="text/ng-template" id="editColumnModal.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+            ×
+        </button>
+        <h3 class="modal-title">编辑列</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-horizontal">
             <div class="form-group">
-                <label for="form-data-col-add-comment" class="col-sm-2 control-label"> 列注释 </label>
+                <label class="col-sm-2 control-label">列</label>
                 <div class="col-sm-10">
-                    <input id="form-data-col-add-comment" type="text" class="form-control ng-pristine ng-valid" ng-model="columnComment">
+                    <span class="form-control">{{ prop.editColumnName }}</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label ng-scope" bs-tooltip="" data-placement="top" data-title="只对设置后新增的数据有效，不影响现有数据"> 默认值 <span class="cursor-help bstooltip label has-required">?</span></label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control ng-pristine ng-valid" ng-model="prop.default">
+                </div>
+            </div>
+            <div class="form-group ng-hide" ng-show="currentCla.schema[editColumnName].type == 'Number' ">
+                <label class="col-sm-2 control-label">    </label>
+                <div class="col-sm-10">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="prop.auto_increment" class="ng-pristine ng-valid">
+                        自增
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="prop.reset" class="ng-pristine ng-valid">
+                        重置自增 <small class="text-muted">自增值重置为列默认值</small>
+                    </label>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="form-data-col-edit-comment" class="col-sm-2 control-label"> 列注释 </label>
+                <div class="col-sm-10">
+                    <input type="text" id="form-data-col-edit-comment" class="form-control ng-pristine ng-valid" ng-model="prop.comment">
                 </div>
 
             </div>
@@ -440,16 +707,16 @@
 
                     <div class="checkbox custom-control">
                         <label>
-                            <input type="checkbox" ng-model="read_only" class="ng-pristine ng-valid">
+                            <input type="checkbox" ng-model="prop.read_only" class="ng-pristine ng-valid">
                             <span class="control-indicator"></span>
                             只读
                         </label>
                     </div>
                     <div class="checkbox custom-control ng-hide" ng-show="currentCla.name=='_User'">
                         <label>
-                            <input type="checkbox" ng-model="user_private" class="ng-pristine ng-valid">
+                            <input type="checkbox" ng-model="prop.user_private" class="ng-pristine ng-valid">
                             <span class="control-indicator"></span>
-                            只限当前用户读写
+                            只限拥有对应列属性的用户读写
                         </label>
                     </div>
                 </div>
@@ -460,171 +727,101 @@
                     <div class="custom-form-inline custom-form-horizontal-form">
                         <div class="checkbox custom-control">
                             <label>
-                                <input type="checkbox" ng-model="columnRequired" class="ng-pristine ng-valid">
+                                <input type="checkbox" ng-model="prop.required" class="ng-pristine ng-valid">
                                 <span class="control-indicator"></span>
                                 必填项
                             </label>
                         </div>
                         <div class="checkbox custom-control">
                             <label>
-                                <input type="checkbox" ng-model="columnHidden" class="ng-pristine ng-valid">
+                                <input type="checkbox" ng-model="prop.hidden" class="ng-pristine ng-valid">
                                 <span class="control-indicator"></span>
                                 客户端不可见
                             </label>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
-            <button class="btn btn-primary" type="button" ng-click="ok()">创建</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">关闭</button>
+
+
+    </div>
+    <div class="modal-footer">
+
+        <!--<button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>-->
+        <!--<button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>-->
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
+
+<!--编辑列的窗口结束-->
+
+
+
+
+
+
+
+
+<!--设置隐藏字段的窗口-->
+<script type="text/ng-template" id="myModalSetting.html">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
+            ×
+        </button>
+        <h3 class="modal-title">设置需要显示的列</h3>
+    </div>
+    <div class="modal-body">
+        <div>
+            选择需要显示的列，可以方便数据浏览
+            <label class="checkbox switch">
+                <span class="switch-text">全部</span>
+                <div class="switch-wrap">
+                    <input type="checkbox" class="switch-input ng-pristine ng-valid" ng-model="allVisible" ng-click="changeAllColumnVisible()">
+                    <span class="switch-label" data-on="On" data-off="Off"></span>
+                    <span class="switch-handle"></span>
+                </div>
+            </label>
         </div>
-    </script>
+        <!-- ngRepeat: (k,v) in schemaBak -->
+        <!--<label class="checkbox switch ng-scope" ng-repeat="(k,v) in schemaBak">-->
+            <!--<span class="switch-text ng-binding" title="ACL">ACL</span>-->
+         <!--<div class="switch-wrap">-->
+            <!--<input type="checkbox" class="switch-input ng-pristine ng-valid" name="view_columns[ACL]" ng-model="v.columnView" value="ACL">-->
+            <!--<span class="switch-label" data-on="On" data-off="Off"></span>-->
+            <!--<span class="switch-handle"></span>-->
+         <!--</div>-->
+         <!--</label>-->
 
 
 
-
-
-
-
-
-<!--删除列的窗口-->
-    <script type="text/ng-template" id="deleteColumnModal.html">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
-                ×
-            </button>
-            <h3 class="modal-title">删除列</h3>
-        </div>
-        <div class="modal-body">
-
-            <select class="form-control ng-pristine ng-valid" ng-model="selectValue" ng-options="value.name as value.name for value in column"  value=""><option value="" class="">选择列</option></select>
-
-
-        </div>
-        <div class="modal-footer">
-
-            <!--<button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>-->
-            <!--<button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>-->
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-
-    <!--删除列的窗口结束-->
-
-
-
-
-    <!--编辑列的窗口-->
-    <script type="text/ng-template" id="editColumnModal.html">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
-                ×
-            </button>
-            <h3 class="modal-title">编辑列</h3>
-        </div>
-        <div class="modal-body">
-
-            <div class="form-horizontal">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">列</label>
-                    <div class="col-sm-10">
-                  <span class="form-control">{{ prop.editColumnName }}</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label ng-scope" bs-tooltip="" data-placement="top" data-title="只对设置后新增的数据有效，不影响现有数据"> 默认值 <span class="cursor-help bstooltip label has-required">?</span></label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control ng-pristine ng-valid" ng-model="prop.default">
-                    </div>
-                </div>
-                <div class="form-group ng-hide" ng-show="currentCla.schema[editColumnName].type == 'Number' ">
-                    <label class="col-sm-2 control-label">    </label>
-                    <div class="col-sm-10">
-                        <label class="checkbox-inline">
-                            <input type="checkbox" ng-model="prop.auto_increment" class="ng-pristine ng-valid">
-                            自增
-                        </label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" ng-model="prop.reset" class="ng-pristine ng-valid">
-                            重置自增 <small class="text-muted">自增值重置为列默认值</small>
-                        </label>
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="form-data-col-edit-comment" class="col-sm-2 control-label"> 列注释 </label>
-                    <div class="col-sm-10">
-                        <input type="text" id="form-data-col-edit-comment" class="form-control ng-pristine ng-valid" ng-model="prop.comment">
-                    </div>
-
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2">  权限</label>
-                    <div class="col-sm-10">
-
-                        <div class="checkbox custom-control">
-                            <label>
-                                <input type="checkbox" ng-model="prop.read_only" class="ng-pristine ng-valid">
-                                <span class="control-indicator"></span>
-                                只读
-                            </label>
-                        </div>
-                        <div class="checkbox custom-control ng-hide" ng-show="currentCla.name=='_User'">
-                            <label>
-                                <input type="checkbox" ng-model="prop.user_private" class="ng-pristine ng-valid">
-                                <span class="control-indicator"></span>
-                                只限拥有对应列属性的用户读写
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-sm-2"> 其他</label>
-                    <div class="col-sm-10">
-                        <div class="custom-form-inline custom-form-horizontal-form">
-                            <div class="checkbox custom-control">
-                                <label>
-                                    <input type="checkbox" ng-model="prop.required" class="ng-pristine ng-valid">
-                                    <span class="control-indicator"></span>
-                                    必填项
-                                </label>
-                            </div>
-                            <div class="checkbox custom-control">
-                                <label>
-                                    <input type="checkbox" ng-model="prop.hidden" class="ng-pristine ng-valid">
-                                    <span class="control-indicator"></span>
-                                    客户端不可见
-                                </label>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
+        <label class="checkbox switch ng-scope" ng-repeat="k in schemaBak">
+            <span class="switch-text ng-binding" title="ACL">{{k.name}}</span>
+            <div class="switch-wrap">
+                <input type="checkbox" class="switch-input ng-pristine ng-valid" ng-model="k.show" name="k.name" value="">
+                <span class="switch-label" data-on="On" data-off="Off"></span>
+                <span class="switch-handle"></span>
             </div>
-
-
-        </div>
-        <div class="modal-footer">
-
-            <!--<button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>-->
-            <!--<button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>-->
-            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-        </div>
-    </script>
-
-    <!--编辑列的窗口结束-->
+        </label>
 
 
 
 
 
+    </div>
+    <div class="modal-footer">
 
+        <!--<button type="button" class='btn btn-default' ng-click="addAlert()">Add Alert</button>-->
+        <!--<button class="btn btn-default" style="float:left" ng-click="addCondition()">添加条件</button>-->
+        <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
 
+<!--设置隐藏字段的窗口结束-->
 
 
 
@@ -632,19 +829,39 @@
 
 
 
-    <button type="button" class="btn btn-default" ng-click="addRow()">添加行</button>
-    <button type="button" class="btn btn-default" ng-click="open()">查询</button>
-
-    <button type="button" class="btn btn-default" ng-click="dropClazz()">删除Class</button>
-    <button type="button" class="btn btn-default" ng-click="deleteRow()">删除行</button>
-    <button type="button" class="btn btn-default" ng-click="openColumn()">添加列</button>
 
 
-    <!--<button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>-->
-    <!--<button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>-->
-    <!--<button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>-->
-    <div ng-show="selected">Selection from a modal: {{ selected1 }}</div>
+
+
+
+
+
+<button type="button" class="btn btn-default" ng-click="addRow()">添加行</button>
+<button type="button" class="btn btn-default" ng-click="open()">查询</button>
+
+<button type="button" class="btn btn-default" ng-click="dropClazz()">删除Class</button>
+<button type="button" class="btn btn-default" ng-click="deleteRow()">删除行</button>
+<button type="button" class="btn btn-default" ng-click="openColumn()">添加列</button>
+
+
+<!--<button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>-->
+<!--<button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>-->
+<!--<button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>-->
+<div ng-show="selected">Selection from a modal: {{ selected1 }}</div>
+
+
+
+<div ng-click="openSetting()" class="cla-settings" style="position: absolute;right: 0;top: 5px;">
+
+  设置
 </div>
+
+
+
+
+
+</div>
+
 
 
 
@@ -653,8 +870,8 @@
 <div ng-controller="bgDgCtrl">
 
 
-    <div class="slick-wrap-border">
 
+        <div class="slick-wrap-border">
 
 
 
