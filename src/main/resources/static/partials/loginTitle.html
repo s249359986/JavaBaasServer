@@ -1,0 +1,88 @@
+
+    <div class="container-fluid">
+        <div class="navbar-collapse" id="app-options">
+            <ul class="nav navbar-nav navbar-app-select">
+                <li ng-class="{active:currentHtmlPage=='applist.html'}">
+                    <a href="/applist.html" class="nav-logo font-logo">L<span class="visible-xs-inline">eanCloud</span></a>
+                </li>
+            </ul>
+
+            <div class="navbar-app-actions-wrap">
+                <ul class="nav navbar-nav navbar-app-actions">
+
+
+
+                    <li ng-class="{active:currentHtmlPage=='help.html'}">
+                        <a class="nav-key-6 dropdown-toggle" title="帮助" data-toggle="dropdown">
+                            <i class="icon icon-dashbd-icon icon-question"></i>
+                            <i class="dashboard-subnav-text">帮助</i>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="/help.html">联系我们</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="/docs">文档</a></li>
+                            <li><a href="/docs/sdk_down.html">SDK 下载</a></li>
+                            <li role="presentation" class="divider"></li>
+                            <li><a href="https://leancloud.cn/apionline/">在线 API 工具</a></li>
+                            <li><a href="http://drop.avosapps.com/">iOS 测试包分发</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#modal-shortcuts">快捷键</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="app-search-wrap ng-hide" ng-show="currentHtmlPage=='applist.html'">
+                    <div class="app-search">
+                        <input type="text" class="form-control ng-pristine ng-valid" placeholder="搜索应用" ng-model="appSearch">
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav navbar-nav navbar-user-actions navbar-right">
+
+                <li class="dropdown">
+                    <a role="button" class="dropdown-toggle" data-toggle="dropdown">
+
+            <span class="user-name-text ng-hide" ng-show="nodeDomain === 'cn'">
+            国内节点
+            <span class="caret"></span>
+            </span>
+            <span class="user-name-text ng-hide" ng-show="nodeDomain === 'us'">
+            美国节点
+            <span class="caret"></span>
+            </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://us.leancloud.cn/1/oauth2/goto/avoscloud">美国节点</a></li>
+                        <li><a href="//leancloud.cn/applist.html">国内节点</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown ng-hide" ng-show="user.username">
+                    <a role="button" class="dropdown-toggle user-name" data-toggle="dropdown">
+            <span class="user-gravatar">
+              <img gravatar-src="user.email.toLowerCase()" gravatar-size="64">
+            </span>
+            <span class="user-name-text ng-binding">
+              
+              <span class="caret"></span>
+            </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="settings.html">账号设置</a></li>
+                        <li><a href="/applist.html">控制台</a></li>
+                        <li><a href="settings.html#/setting/team">团队管理</a></li>
+                        <li><a href="bill.html#/bill/general">财务</a></li>
+                        <!-- <li><a href="https://a.leancloud.cn">推荐奖励</a></li> -->
+                        <li ng-show="user.username" style="" class="ng-hide"><a ng-click="signout()">登出</a></li>
+                    </ul>
+                </li>
+                <li ng-hide="user.username" class="">
+                    <a href="index.html#/login">登录</a>
+                </li>
+                <li ng-hide="user.username" class="">
+                    <a href="index.html#/reg">注册</a>
+                </li>
+            </ul>
+
+        </div><!-- /.navbar-collapse -->
+    </div>

@@ -112,6 +112,10 @@
             border-top-width: 0px;
             min-height: 526px;
         }
+        .slick-wrap-border .slick-viewport
+        {
+            min-height: 526px;
+        }
 
 
 
@@ -942,14 +946,15 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="cancel()">
             ×
         </button>
-        <h3 class="modal-title">编辑ACL</h3>
+        <h3 class="modal-title">当前行数据视图</h3>
     </div>
     <div class="modal-body">
 
+        <pre>
 
+            <code ng-bind-html="rowView | to_trusted"></code>
 
-
-
+        </pre>
     </div>
     <div class="modal-footer">
         <!--<button class="btn btn-primary" type="button" ng-click="ok()">保存</button>-->

@@ -46,10 +46,6 @@ angular.module('baas').controller('dataCtrl', ['$rootScope','$scope', '$statePar
 
     var id = $stateParams.id;
     if (id) {
-
-
-
-
         $rootScope.$on('updateClass',function(event,data){
             clazzService.getClazz(id).then(function(data){
                 $scope.clazzs =data;
@@ -811,20 +807,20 @@ angular.module('baas').controller('bgDgCtrl', ['$scope', '$stateParams', 'clazzS
     var tempClazz=$scope.ctr_clazz=$stateParams.clazz;
     var tempPage=0;
 
-    $scope.showRowInfo=function(){
-
-        var modalInstance = $uibModal.open({
-            animation: $scope.animationsEnabled,
-            templateUrl: 'showInfoModalContent.html',
-            controller: 'rowInfoModalCtrl'
-//            size: size,
-//            resolve: {
-//                items: function () {
-//                    return $scope.items;
-//                }
-//            }
-        });
-    }
+//    $scope.showRowInfo=function(){
+//
+//        var modalInstance = $uibModal.open({
+//            animation: $scope.animationsEnabled,
+//            templateUrl: 'showInfoModalContent.html',
+//            controller: 'rowInfoModalCtrl'
+////            size: size,
+////            resolve: {
+////                items: function () {
+////                    return $scope.items;
+////                }
+////            }
+//        });
+//    }
 
 
     $scope.prePage=function()
@@ -929,13 +925,61 @@ angular.module('baas').controller('bgDgCtrl', ['$scope', '$stateParams', 'clazzS
  *
  *
  * */
-angular.module('baas').controller('rowInfoModalCtrl', ['$scope', '$stateParams', 'clazzService','fileService','objectService','gridService','$uibModal', function ($scope, $stateParams,clazzService,fileService,objectService,gridService,$uibModal) {
+angular.module('baas').controller('rowInfoModalCtrl', ['$scope', '$stateParams', 'clazzService','fileService','objectService','gridService','$uibModal','items','$uibModalInstance', function ($scope, $stateParams,clazzService,fileService,objectService,gridService,$uibModal,items,$uibModalInstance) {
+
+    function toHtml(obj)
+    {
 
 
+        var tempH1='';
 
-    var tempId=$scope.ctr_id=$stateParams.id;
-    var tempClazz=$scope.ctr_clazz=$stateParams.clazz;
-    var tempPage=0;
+        for(var i in obj)
+        {
+
+            if(typeof obj[i] == 'object')
+            {
+
+
+               return tempH1+i+":{"+toHtml(obj[i])+"}";
+            }
+            else
+            {
+//                if(typeof tempRow[i]=="boolean")
+//                {
+//
+//                    tempH1+='<div>'+i+":"+obj[i].toString()+'</div>'+',';
+//                }
+//                else
+//                {
+                    tempH1+='<div>'+i+":"+obj[i]+'</div>'+',';
+                //}
+
+            }
+
+
+        }
+        return tempH1;
+
+    }
+
+
+    if(items)
+    {
+        if(items.row)
+        {
+            var tempRow=items.row;
+            $scope.rowView="{"+toHtml(tempRow)+"}";
+        }
+    }
+
+    //$scope.rowView=tempH;
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+//    var tempId=$scope.ctr_id=$stateParams.id;
+//    var tempClazz=$scope.ctr_clazz=$stateParams.clazz;
+//    var tempPage=0;
 
 
 

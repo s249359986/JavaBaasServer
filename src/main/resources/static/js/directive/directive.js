@@ -5,7 +5,7 @@
  */
 
 
-app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','clazzService',function(fieldService,objectService,gridService,$uibModal,clazzService) {
+app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','clazzService','$rootScope',function(fieldService,objectService,gridService,$uibModal,clazzService,$rootScope) {
     var globalId="";
     var globalClazz="";
     var grid=null;
@@ -321,7 +321,6 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
                     {
                         curUpdateValue=BWCLAZZTYPE[k].formatUpDate(curUpdateValue);
                     }
-
                     break;
                 }
 
@@ -360,6 +359,8 @@ app.directive('bgdg',['fieldService','objectService','gridService','$uibModal','
                         rowData.updatedAt=tempDate;
                         curGrid.invalidateRow(rowIndex);
                         curGrid.render();
+                        $rootScope.$broadcast('updateClass');//通知菜单
+                        $rootScope.$broadcast("bgDgPageOn");//通知条数
                     }
                 },function(data1){
 

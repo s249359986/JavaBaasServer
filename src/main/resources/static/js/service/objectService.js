@@ -212,5 +212,11 @@ angular.module('baas').factory('objectService', ['$q', 'rest', function ($q, res
     function getCurrentClazzFieldsModel(){
         return currentClazzFieldsModel;
     }
-    return {getDataList:getDataList,getDataCount:getDataCount,addData:addData,updateData:updateData,deleteData:deleteData,setPage:setPage,getACount:getACount,setQuery:setQuery,setOrder:setOrder};
+
+    function aaa()
+    {
+        alert("sss");
+    }
+
+    return {getDataList:getDataList,getDataCount:getDataCount,addData:addData,updateData:updateData,deleteData:deleteData,setPage:setPage,getACount:getACount,setQuery:setQuery,setOrder:setOrder,aaa:aaa};
 }]);

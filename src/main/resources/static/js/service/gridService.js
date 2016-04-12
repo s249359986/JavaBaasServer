@@ -1702,7 +1702,42 @@ angular.module('baas').factory('gridService', ['$q', 'rest','$window','$uibModal
             return tempWrap;
         }
         function SelfIdStringFormatter(row, cell, value, columnDef, dataContext) {
-            return value;
+
+            function showRow()
+            {
+
+                var tempGrid=getGrid();
+                var tempColumn=tempGrid.getColumns()[cell];
+
+                var tempItems=tempGrid.getDataItem(row);
+
+
+              var  modalInstance = $uibModal.open({
+                    //animation: $scope.animationsEnabled,
+                    templateUrl: 'showInfoModalContent.html',
+                    controller:"rowInfoModalCtrl",  //ModalInstanceCtrl
+                    //size: size,
+                    resolve: {
+                        items: function () {
+                            return {row:tempItems}
+                        }
+                    }
+                });
+            }
+            var tempRadom1=parseInt(Math.random()*50);
+            var tempRadom2=parseInt(Math.random()*50);
+            var tempRadom3=parseInt(Math.random()*50);
+            var tempTime=new Date().getTime();
+            var buttonId=tempRadom1+"b"+tempRadom2+"t"+tempRadom3+"n"+tempTime;
+            var btnShowInfoId="showInfo"+buttonId;
+            setTimeout(function(){
+                $("#"+btnShowInfoId).bind("click",showRow);
+            },1000);
+
+
+            var tempH='<a href="javascript:void(0);" id="'+btnShowInfoId+'">'+value+'</a>';
+
+            return tempH;
         }
 
 
